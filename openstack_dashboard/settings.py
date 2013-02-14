@@ -98,21 +98,21 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'horizon.loaders.TemplateLoader'
 )
 
 TEMPLATE_DIRS = (
     os.path.join(ROOT_PATH, 'templates'),
-)
+) 
 
 STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-less_binary = os.path.join(BIN_DIR, 'less', 'lessc')
+BIN_DIR='/usr/bin/'
+less_binary = os.path.join(BIN_DIR, 'lessc')
 COMPRESS_PRECOMPILERS = (
     ('text/less', (less_binary + ' {infile} {outfile}')),
 )
@@ -141,6 +141,15 @@ INSTALLED_APPS = (
     'openstack_dashboard.dashboards.settings',
     'openstack_auth',
 )
+
+THEME_APP = 'openstack_dashboard_theme'
+
+try:
+    __import__(THEME_APP)
+    INSTALLED_APPS = (THEME_APP,) + INSTALLED_APPS
+except:
+    pass
+
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 AUTHENTICATION_BACKENDS = ('openstack_auth.backend.KeystoneBackend',)
