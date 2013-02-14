@@ -1,0 +1,21 @@
+{% load compress %}
+{% load themes %}
+
+{% compress css %}
+<link href='{{ STATIC_URL }}horizon/lib/rickshaw.css' type='text/css' media='screen' rel='stylesheet' />
+<link href='{{ STATIC_URL }}horizon/lib/font-awesome/scss/font-awesome.scss' type='text/scss' media='screen' rel='stylesheet' />
+<link href='{{ STATIC_URL }}dashboard/scss/rhtheme.scss' type='text/scss' media='screen' rel='stylesheet' />
+{% endcompress %}
+{% current_theme as current_theme %}
+{% theme_dir as theme_dir %}
+{% with THEME=current_theme THEME_DIR=theme_dir %}
+{% compress css %}
+<style type="text/scss">
+{% include 'themes/themes.scss' %}
+</style>
+{% endcompress %}
+{% endwith %}
+
+
+
+<link rel="shortcut icon" href="{{ STATIC_URL }}dashboard/img/rhfavicon.ico"/>
