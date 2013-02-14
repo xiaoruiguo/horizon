@@ -150,11 +150,11 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
 )
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 COMPRESS_OUTPUT_DIR = 'dashboard'
 COMPRESS_CSS_HASHING_METHOD = 'hash'
 COMPRESS_PARSER = 'compressor.parser.HtmlParser'
-COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE = False
 
 INSTALLED_APPS = [
     'openstack_dashboard',
@@ -276,7 +276,9 @@ AVAILABLE_THEMES = [
         'material',
         pgettext_lazy("Google's Material Design style theme", "Material"),
         'themes/material'
-    ),
+    ),(
+        'rcue',
+        pgettext_lazy("Red Hat Theme", "RCUE"), 'themes/rcue')
 ]
 
 # The default theme if no cookie is present
