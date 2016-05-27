@@ -22,7 +22,16 @@ h2 {
 }
 
 #main_content {
-  padding: 0 20px;
+  padding: 0;
+  width: 100%;
+}
+
+#content_body {
+  left: 0;
+  max-width: none;
+  position: fixed;
+  right: 0;
+  top: 102px;
 }
 
 #monitoring {
@@ -61,4 +70,9 @@ p {
   padding: 0;
   margin: 20px 0;
   min-width: 0;
+}
+
+.breadcrumb {
+  margin-left: -20px;
+  margin-right: -20px;
 }

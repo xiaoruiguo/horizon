@@ -4,6 +4,7 @@
 *.sw?
 *.sqlite3
 *.lock
+.idea
 .environment_version
 .selenium_log
 .coverage*
