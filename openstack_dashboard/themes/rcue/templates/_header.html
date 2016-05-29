@@ -3,7 +3,7 @@
 {% load context_selection %}
 <ul class="nav pull-right" id="user_info">
   <li class="dropdown " >
-  <a href="#" class="dropdown-toggle"><span class="rcueicon rcueicon-list"></span>{% trans "Project" %}{{ project_name }}<b class="caret"></b></a>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rcueicon rcueicon-list"></span>{% trans "Project" %}{{ project_name }}<b class="caret"></b></a>
   <ul class="dropdown-menu">
   {% if domain_supported %}
   {% show_domain_list %}
@@ -14,24 +14,11 @@
   {% endif %}
   </ul>
   </li>
-  {% url 'horizon:redhat_access_plugin_openstack:search:index' as plugin_url %}
-  {% if plugin_url %}
-    <li class="dropdown {% if request.horizon.dashboard.slug == "redhat_access_plugin_openstack" %}active{% endif %}">
-    <a href="#" class="dropdown-toggle">Red Hat Access<b class="caret"></b></a>
-    <ul class="dropdown-menu">
-        <li{% if request.horizon.panel.slug == "search" %} class="active"{% endif %}><a href="{% url 'horizon:redhat_access_plugin_openstack:search:index' %}">{% trans "Search" %}</a></li>
-        <li class="divider"></li>
-        <li{% if request.horizon.panel.slug == "logs" %} class="active"{% endif %}><a href="{% url 'horizon:redhat_access_plugin_openstack:logs:index' %}">{% trans "Logs" %}</a></li>
-        <li class="divider"></li>
-        <li{% if request.horizon.panel.slug == "support" %} class="active"{% endif %}><a href="{% url 'horizon:redhat_access_plugin_openstack:support:index' %}">{% trans "Support" %}</a></li>
-    </ul>
-    </li>
-  {% endif %}
   {% if HORIZON_CONFIG.help_url %}
   <li><a href="{{ HORIZON_CONFIG.help_url }}" target="_new">{% trans "Help" %}</a></li>
   {% endif %}
   <li class="dropdown {% if request.horizon.dashboard.slug == "settings" %}active{% endif %}">
-    <a href="#" class="dropdown-toggle"><span class="rcueicon rcueicon-user"></span> {% blocktrans with username=request.user.username %}{{ username }}{% endblocktrans %}<b class="caret"></b></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rcueicon rcueicon-user"></span> {% blocktrans with username=request.user.username %}{{ username }}{% endblocktrans %}<b class="caret"></b></a>
     <ul class="dropdown-menu">
       <li{% if request.horizon.dashboard.slug == "settings" and request.horizon.panel.slug == "user" %} class="active"{% endif %}><a href="{% url 'horizon:settings:user:index' %}">{% trans "Settings" %}</a></li>
       <li{% if request.horizon.dashboard.slug == "settings" and request.horizon.panel.slug == "password" %} class="active"{% endif %}><a href="{% url 'horizon:settings:password:index' %}">{% trans "Change Password" %}</a></li>
